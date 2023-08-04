@@ -1,0 +1,770 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#first{
+    background-color:black;
+    color:white;
+    font-family: 'Anek Malayalam', sans-serif;
+font-family: 'Roboto', sans-serif;
+letter-spacing:1px;
+max-height: 500px;
+display:flex;
+}
+#footer h4,#footer h5{
+    font-family: 'Anek Malayalam', sans-serif;
+font-family: 'Roboto', sans-serif;
+letter-spacing:1px;
+}
+
+#first>div{
+
+
+    margin-left:40px;
+
+    /* border:1px solid green; */
+    
+}
+#first>div:nth-child(2){
+  margin: auto;
+  margin-top:30px;
+  
+}
+#first>div:nth-child(2)>p{
+    cursor:pointer;
+}
+#first>div:nth-child(3){
+    margin: auto;
+    margin-top:30px;
+    
+  }
+  #first>div:nth-child(3)>p{
+    cursor:pointer;
+}
+  #first>div:nth-child(4){
+    margin: auto;
+    margin-top:30px;
+    
+  }
+  #first>div:nth-child(4)>p{
+    cursor:pointer;
+}
+#footer input{
+    /* border-color:none; */
+    margin: auto;
+    border: 0ch;
+    width:250px;
+    padding:10px;
+    border: none;
+    
+}
+#footer button{
+    font-size:medium;
+    cursor: pointer;
+    border-color:none;
+    margin: auto;
+    border-radius:5px;
+    border: 0ch;
+    width:200px;
+
+    height:40px;
+    padding:10px;
+    background-color:black;
+}
+
+#border{
+    display:flex;
+    width:500px;
+    height:90px;
+    border-radius:30px;
+    /* border:1px solid rgba(128,128,128,0.5); */
+}
+#first>div img{
+   margin-top:70px;
+   margin-bottom:8px;
+   cursor: pointer;
+   /* border:1px solid purple; */
+   
+    height:59px;
+}
+#second{
+    display:flex;
+    margin-top:40px;
+    height:30px;
+    justify-content:space-around;
+    width:300px;
+    color: white;
+   /* border:1px solid red; */
+}
+.social { 
+cursor: pointer;
+}
+.social:hover{
+    color:teal;
+    transform: scale(1.5);
+}
+ 
+
+#footer p{
+    color:#ffffff;
+    font-size:13px;
+   font-weight:bold;
+   word-spacing:1px;
+}
+#card{
+    display:flex;
+    /* border:1px solid red; */
+    justify-content:space-around;
+    margin-top:70px;
+   
+}
+#card>div{
+    width:700px; 
+    /* border:1px solid green;    */
+}
+#card>div:first-child{
+    width:500px;
+}
+#card>div:last-child{
+    width:600px;
+    display:flex;
+    
+    /* border:1px solid blue; */
+    justify-content:space-around;
+}
+
+#card> #second{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    font-size:x-large;
+}
+
+#rights{
+    margin-top:30px;
+    /* border:1px solid red; */
+   text-align: center;
+   color: white;
+}
+
+#border >button {
+border-radius: 50%;
+width: 20px;
+height: 30px;
+border: none;
+margin-left: -15%;
+margin-top: 6%;
+font-size: small;
+font-weight: 900;
+padding: -20px;
+}
+#border >input {
+border-radius: 10%;
+width: 300px;
+height: 45px;
+border: none;
+margin: 5%;
+letter-spacing: 0.1rem;
+}
+#rights{
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+.lowestdivBox{
+    background: #191919;
+    /* margin-top: 0%; */
+    padding-top: 0.5%;
+     padding-bottom : 0.5%;
+}
+ .footer-navigations-headings h5{
+    font-size: larger;
+}
+
+#left p,
+  #help p,
+  #company p {
+    cursor: pointer;
+    color:rgb(203, 203, 203);
+    margin-top: 10%;
+    margin-bottom: 10%;
+  }
+  #left p:hover,
+  #help p:hover,
+  #company p:hover {
+color: rgb(255, 255, 255);  
+}
+/* responsive content */
+
+@media only screen and (max-width: 499px) {
+  /* Styles for screen size 480px max */
+  #first {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+  }
+  #first div {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+  }
+  .first-footer-heading> h1 {
+    font-size: 18px;
+    text-align: center;
+    
+  }
+  #border {
+    width: 80%;
+    margin: auto;
+  }
+
+  #left,
+  #help,
+  #company {
+    display: flex;
+    flex-direction: column;
+    line-height: 0%;
+    font-size: 14px;
+    width: 100%;
+    margin: auto;
+  }
+  #left p,
+  #help p,
+  #company p {
+    display: none;
+  }
+
+ .footer-navigations-headings  h5 {
+    margin-bottom: 10px;
+    line-height: 0%;
+    font-size: 16px;
+    font-weight: 600;
+    color: #3f3d3d;
+    cursor: pointer;
+    text-align: center;
+  }
+  .footer-navigations-headings h5:hover {
+    color:teal;
+  }
+  #left h5 {
+    margin-bottom: -50px;
+  }
+  #help h5 {
+    margin-bottom: -50px;
+  }
+
+  .lowestdiv {
+    padding: 10px;
+    font-size: small;
+    background: #191919;
+  }
+  #second h3 {
+    font-size: 18px;
+  }
+  #card {
+    margin-top: -10px;
+  }
+  #rights :nth-child(2) {
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (max-width: 599px) {
+  /* Styles for screen size 480px max */
+  #first {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+  }
+  #first div {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+  }
+ .first-footer-heading h1 {
+    font-size: 18px;
+    text-align: center;
+  }
+  #border {
+    width: 80%;
+    margin: auto;
+  }
+
+  #left,
+  #help,
+  #company {
+    display: flex;
+    flex-direction: column;
+    line-height: 0%;
+    font-size: 14px;
+    width: 100%;
+    margin: auto;
+  }
+  #left p,
+  #help p,
+  #company p {
+    display: none;
+  }
+
+ .footer-navigations-headings h5 {
+    margin-bottom: 10px;
+    line-height: 0%;
+    font-size: 16px;
+    font-weight: 600;
+    color: #3f3d3d;
+    cursor: pointer;
+    text-align: center;
+  }
+ .footer-navigations-headings h5:hover {
+    color: teal;
+  }
+  #left h5 {
+    margin-bottom: -50px;
+  }
+  #help h5 {
+    margin-bottom: -50px;
+  }
+
+  .lowestdiv {
+    padding: 10px;
+    font-size: small;
+    background: #191919;
+  }
+  #second h3 {
+    font-size: 18px;
+  }
+  #card {
+    margin-top: -10px;
+  }
+  #rights :nth-child(2) {
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (max-width: 699px) {
+  #first {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+  }
+  #first div {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+  }
+.first-footer-heading  h1 {
+    font-size: 18px;
+    text-align: center;
+  }
+  #border {
+    width: 80%;
+    margin: auto;
+  }
+
+  #left,
+  #help,
+  #company {
+    display: flex;
+    flex-direction: column;
+    line-height: 0%;
+    font-size: 14px;
+    width: 100%;
+    margin: auto;
+  }
+  #left p,
+  #help p,
+  #company p {
+    display: none;
+  }
+
+ .footer-navigations-headings h5 {
+    margin-bottom: 10px;
+    line-height: 0%;
+    font-size: 16px;
+    font-weight: 600;
+    color: #3f3d3d;
+    cursor: pointer;
+    text-align: center;
+  }
+ .footer-navigations-headings h5:hover {
+    color: teal;
+  }
+  #left h5 {
+    margin-bottom: -50px;
+  }
+  #help h5 {
+    margin-bottom: -50px;
+  }
+
+  .lowestdiv {
+    padding: 10px;
+    font-size: small;
+    background: #191919;
+  }
+  #second h3 {
+    font-size: 18px;
+  }
+  #card {
+    margin-top: -10px;
+  }
+  #rights :nth-child(2) {
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (max-width: 799px) {
+  /* Styles for screen size 480px max */
+  #first {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+  }
+  #first div {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+  }
+ .first-footer-heading h1 {
+    font-size: 18px;
+    text-align: center;
+  }
+  #border {
+    width: 80%;
+    margin: auto;
+  }
+
+  #left,
+  #help,
+  #company {
+    display: flex;
+    flex-direction: column;
+    line-height: 0%;
+    font-size: 14px;
+    width: 100%;
+    margin: auto;
+  }
+  #left p,
+  #help p,
+  #company p {
+    display: none;
+  }
+
+ .footer-navigations-headings h5 {
+    margin-bottom: 10px;
+    line-height: 0%;
+    font-size: 16px;
+    font-weight: 600;
+    color: #3f3d3d;
+    cursor: pointer;
+    text-align: center;
+  }
+ .footer-navigations-headings h5:hover {
+    color:teal;
+  }
+  #left h5 {
+    margin-bottom: -50px;
+  }
+  #help h5 {
+    margin-bottom: -50px;
+  }
+
+  .lowestdiv {
+    padding: 10px;
+    font-size: small;
+    background: #191919;
+  }
+  #second h3 {
+    font-size: 18px;
+  }
+  #card {
+    margin-top: -10px;
+  }
+  #rights :nth-child(2) {
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (max-width: 899px) {
+  /* Styles for screen size 480px max */
+  #first {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+  }
+  #first div {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+  }
+ .first-footer-heading h1 {
+    font-size: 18px;
+    text-align: center;
+  }
+  #border {
+    width: 80%;
+    margin: auto;
+  }
+
+  #left,
+  #help,
+  #company {
+    display: flex;
+    flex-direction: column;
+    line-height: 0%;
+    font-size: 14px;
+    width: 90%;
+    margin: auto;
+  }
+  #left p,
+  #help p,
+  #company p {
+    display: none;
+  }
+
+  .footer-navigations-headings h5 {
+    margin-bottom: 10px;
+    line-height: 0%;
+    font-size: 16px;
+    font-weight: 600;
+    color: #3f3d3d;
+    cursor: pointer;
+    text-align: center;
+  }
+  h5:hover {
+    color:teal;
+  }
+  #left h5 {
+    margin-bottom: -50px;
+  }
+  #help h5 {
+    margin-bottom: -50px;
+  }
+
+  .lowestdiv {
+    padding: 10px;
+    font-size: small;
+    background: #191919;
+  }
+  #second h3 {
+    font-size: 18px;
+  }
+  #card {
+    margin-top: -10px;
+  }
+  #rights :nth-child(2) {
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (max-width: 999px) {
+  /* Styles for screen size 480px max */
+  #first {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+  }
+  #first div {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+  }
+ .first-footer-heading h1 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  #left,
+  #help,
+  #company {
+    display: flex;
+    flex-direction: column;
+    line-height: 0%;
+    font-size: 14px;
+    width: 100%;
+    margin: auto;
+  }
+  #left p,
+  #help p,
+  #company p {
+    display: none;
+  }
+
+.footer-navigations-headings  h5 {
+    margin-bottom: 10px;
+    line-height: 0%;
+    font-size: 16px;
+    font-weight: 600;
+    color: #3f3d3d;
+    cursor: pointer;
+    text-align: center;
+  }
+  h5:hover {
+    color: teal;
+  }
+  #left h5 {
+    margin-bottom: -50px;
+  }
+  #help h5 {
+    margin-bottom: -50px;
+  }
+
+  .lowestdiv {
+    padding: 10px;
+    font-size: small;
+    background: #191919;
+  }
+  #second h3 {
+    font-size: 18px;
+  }
+  #card {
+    margin-top: -10px;
+  }
+  #rights :nth-child(2) {
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1080px) {
+  #first {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+  }
+  #first div {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px;
+    padding: 10px;
+    margin: auto;
+  }
+.first-footer-heading  h1 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  #left,
+  #help,
+  #company {
+    width: 100%;
+    line-height: 0%;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  #left p,
+  #help p,
+  #company p {
+    cursor: pointer;
+    color: #837f7f;
+    width: 100%;
+    text-align: center;
+  }
+  #left p:hover,
+  #help p:hover,
+  #company p:hover {
+    color: black;
+  }
+
+ .footer-navigations-headings h5 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .lowestdiv {
+    padding: 10px;
+    font-size: small;
+    background: #191919;
+  }
+  #second h3 {
+    font-size: 20px;
+  }
+  #card {
+    margin-top: -10px;
+  }
+  #rights :nth-child(2) {
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1280px) {
+  #first {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+  }
+  #first div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px ;
+    padding: 10px;
+    margin: auto;
+  }
+  .first-footer-heading h1 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  #left,
+  #help,
+  #company {
+    width: 90%;
+    line-height: 0%;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  #left p,
+  #help p,
+  #company p {
+    cursor: pointer;
+    color: #837f7f;
+    width: 100%;
+    text-align: center;
+  }
+  #left p:hover,
+  #help p:hover,
+  #company p:hover {
+    color: black;
+  }
+
+ .footer-navigations-headings h5 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .lowestdiv {
+    padding: 10px;
+    font-size: small;
+    background: #191919;
+  }
+  #second h3 {
+    font-size: 20px;
+  }
+  #card {
+    margin-top: -10px;
+  }
+  #rights :nth-child(2) {
+    margin-bottom: 30px;
+  }
+}
+

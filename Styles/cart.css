@@ -1,0 +1,295 @@
+/* * {
+   margin: 0;
+   padding: 0;
+} */
+
+.parent {
+   font-size: 16px;
+}
+
+#per {
+   font-size: 20px;
+   color:#ffffff;
+   font-weight: bold;
+}
+
+.parent h2 {
+   margin-top: 12px;
+   font-weight: 500px;
+}
+
+.parent img {
+   display: block;
+   margin: 10px 10px 10px 20px;
+}
+
+#parent {
+   display: flex;
+   justify-content: center;
+}
+
+.sp {
+   display: flex;
+   gap: 15px;
+}
+
+#child {
+   text-align: center;
+
+
+}
+
+#child>h2 {
+   font-size: 50px;
+   color: rgb(201, 201, 201);
+}
+
+#child .ps {
+   font-size: 20px;
+   border: none;
+   background-color: rgb(51, 63, 72);
+   color: aliceblue;
+   width: 400px;
+   height: 60px;
+}
+
+#psb {
+   display: flex;
+   justify-content: center;
+   padding-top: 80px;
+}
+
+#fash {
+   display: flex;
+   width: 80%;
+   margin: auto;
+   padding-top: 40px;
+   padding-bottom: 40px;
+}
+
+#fash>div {
+   display: flex;
+   gap: 20px;
+}
+
+#email {
+   width: 400px;
+   height: 30px;
+}
+
+.k {
+   margin-left: 90px;
+}
+
+#fash>img {
+   width: 500px;
+}
+
+#cartprod {
+   width: 80%;
+   display: flex;
+   gap: 30px;
+   margin: auto;
+   justify-content: center;
+   box-shadow: rgba(236, 134, 178, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+   margin-bottom: 20px;
+   border-radius: 2px;
+   border: 5pxs solid rgb(77, 75, 75);
+
+}
+
+.trp{
+   color: white;
+}
+
+#cartprod>img {
+   width: 160px;
+   height: 180px;
+}
+
+#rsk {
+   margin-left: -160px;
+}
+
+#cardval>p {
+   font-size: 40px;
+   font-family: Inter, Roboto, Arial, Helvetica, sans-serif;
+
+}
+
+#cartval>p>span {
+   font-size: 40px;
+}
+
+#btn {
+   background-color:#1a2024;
+   color: rgb(184, 184, 184);
+   border: none;
+
+   font-size: 25px;
+}
+
+#delbtn {
+
+   color: white;
+   border: none;
+   border-radius: 5px;
+   width: 20px;
+   height: 10px;
+}
+
+#cardval>p {
+   text-align: center;
+   color:white;
+   font-size: 20px;
+   width: 50px;
+}
+
+#Offer {
+   width: 100%;
+   height: 180px;
+   margin: auto;
+   display: flex;
+   justify-content: center;
+   margin-top: 40px;
+}
+
+#Offer>div>p>img {
+   width: 30px;
+   height: 25px;
+}
+
+#promo {
+   padding: 10px;
+   margin-top: 10px;
+   justify-content: center;
+}
+
+#Offer>div>p {
+   font-family: Inter, Roboto, Arial, Helvetica, sans-serif;
+   color: white;
+   font-size: 20px;
+   text-align: center;
+}
+
+#Offer>div>button {
+   background-color:teal;
+   color: rgb(252, 251, 251);
+   font-family: sans-serif;
+   padding: 10px;
+   border: 1px solid#1a2024;
+   border-radius: 5px;
+   cursor: pointer;
+}
+
+
+#button {
+   display: block;
+   margin: auto;
+   color: whitesmoke;
+   /* background-color:#1a2024; */
+   background: teal;
+   border: none;
+   width: 80px;
+   height: 60px;
+   /* font-family: sans-serif; */
+   font-size: 24px;
+   font-weight: bold;
+   border-radius: 8px;
+   margin-top: 30px;
+
+}
+
+#cardval {
+   display: flex;
+
+   justify-content: space-around;
+   margin-top: -10%;
+}
+
+#cardval p {
+   margin-top: 15px;
+}
+
+#trp {
+   display: flex;
+   justify-content: center;
+
+}
+
+#trp>p {
+   color:white;
+}
+
+#trp img {
+   margin-top: -6px;
+   margin-right: 5px;
+}
+
+#cardval>div>a {
+   text-decoration: none;
+}
+
+.haanCart {
+   display: none;
+}
+
+.parent>button {
+   border: none;
+   background-color: white;
+   /* margin: 10px 30px 10px 0px; */
+
+}
+
+.haanoverlay {
+   position: fixed;
+   width: 100vw;
+   height: 100vh;
+   background-color: rgba(0, 0, 0, 0.5);
+   z-index: 99;
+   top: 0;
+   left: 0;
+}
+
+.haantcartdiv {
+   position: fixed;
+   top: 0;
+   right: 0;
+   height: 100vh;
+   z-index: 100;
+   width: 400px;
+   box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 30px 6px;
+  
+}
+.haancartinnerdiv {
+   display: none;
+   background-color: rgb(15, 15, 15);
+   height: 100vh;
+}
+.emptycartimage {
+   width: 200px;
+   margin-top: 50px;
+}
+#grandTotalParent {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+}
+#gandTotal {
+   padding: 10px;
+   display: flex;
+   justify-content: space-between;
+   background-color: white;
+}
+#bagItems {
+   max-height: 85vh;
+   overflow-x: hidden;
+   overflow-y: auto;
+}
+
+#startShoping:hover{
+   
+   background: rgb(0,0,0);
+   background: linear-gradient(197deg, rgba(0,0,0,1) 36%, rgba(0,128,128,1) 67%);
+}

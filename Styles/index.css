@@ -1,0 +1,409 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .material-symbols-outlined {
+      font-size: xx-large;
+    }
+  section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #161616;
+    /* background: url("https://cdn.shopify.com/s/files/1/0511/9066/1293/files/QWert_d1513456-152b-4cc5-a407-4c4cf1c6e087.png?v=1684768627");
+      background-repeat: no-repeat;
+      background-size: 1550px 750px; */
+  }
+  
+  section .circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: teal;
+    clip-path: circle(70% at right -20%);
+  }
+  
+  .content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .content .textBox {
+    position: relative;
+    max-width: 600px;
+    margin-right: 20px;
+  }
+  .content .textBox h2 {
+    /* color: rgb(0, 0, 0); */
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 10px;
+    line-height: 1.4em;
+    font-weight: 700;
+  }
+  .content .textBox p {
+    /* color: rgb(0, 0, 0); */
+    color: white;
+  }
+  .content .textBox a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 20px;
+    background: teal;
+    color: white;
+    border-radius: 40px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+  
+  .content .textBox a:hover {
+      background: rgb(0,0,0);
+      background: linear-gradient(197deg, rgba(0,0,0,1) 36%, rgba(0,128,128,1) 67%);
+  }
+  
+  .swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 180px;
+    height: 460px;
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+  /* .swiper-slide img {
+      display: block;
+      width: 80%;
+    } */
+  
+  .content .imgBox {
+    width: 500px;
+    display: flex;
+    justify-content: flex-end;
+  
+  }
+  
+  .content .imgBox img {
+    max-width: 450px;
+  }
+  .swiper-slide img {
+    position: relative;
+    /* position: absolute; */
+    bottom: 0;
+    max-height: 100%;
+    
+  
+  }
+  
+  .swiper-3d .swiper-slide-shadow-right,.swiper-3d .swiper-slide-shadow-left,.swiper-3d .swiper-slide-shadow-top,.swiper-3d .swiper-slide-shadow-bottom {
+    background-image: none;
+  }
+  
+  .swiper-3d .swiper-slide-shadow-left {
+      background-image: none;}
+  
+      .msg{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          max-height: 35px;
+          background: rgb(27,27,27);
+          background: linear-gradient(90deg, rgba(27,27,27,1) 20%, rgba(0,128,128,1) 64%);
+      }
+      .msg p {
+          font-size:1.2rem;
+          margin: 2%;
+          color: white;
+      }
+  @media screen and (max-width:991px){
+      section{
+      padding: 150px 40px;
+      
+      }
+      .content {
+          flex-direction: column;
+      }
+      .content .textBox,.content .imgBox{
+          max-width: 100%;
+      }
+      .swiper-slide {
+     
+     
+          height: 300px;
+         
+          
+        }
+       
+    
+  }
+  
+  
+  /* cart css  */
+  
+   .TopHeadingAndBtn{
+      width: 98%;
+      height: 60px;
+      margin: 0 auto;
+      /*background: gray;*/
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      justify-content: space-between;
+      border-bottom: 2px solid #ddd;
+      
+    
+  }
+  .TopHeadingAndBtn p span{
+      font-size: 40px;
+      margin: 0 5px;
+      cursor: pointer;
+      color: #555;
+       width: 30px;
+      height: 30px;
+      display: inline-block;
+      line-height: 19px;
+      text-align: center;
+      border-radius: 3px;
+      
+  }
+  .TopHeadingAndBtn p span:hover{
+      background: #222;
+      color: white;
+  }
+  
+  .cartCont{
+      width: 98%;
+      height: 600px;
+      /*background: red;*/
+      margin: auto;
+      display: flex;
+      align-items: center;
+      overflow-x: auto;
+  }
+  .cartCont::-webkit-scrollbar{
+      display: none;
+  }
+  .cartCont .product{
+      min-width: 24%;
+      height: 90%;
+      background: whitesmoke;
+      margin:  0 20px  0 0;
+      border-radius: 20px;
+      position: relative;
+      left: 0;
+      transition: 0.5s;
+  
+  }
+  picture{
+      width: 100%;
+      height: 70%;
+      padding: 20px;
+      /*background: green;*/
+      display: flex;
+      overflow: hidden;
+      margin-bottom: 20px;
+  }
+  picture img{
+      width: 100%;
+  }
+  .detail,
+  .button{
+      width: 90%;
+      /*background: red;*/
+      margin: auto;
+      padding: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 50px;
+      font-size: 20px;
+      color: #444;
+     align-items: center;
+     justify-content: center;
+  }
+  .button a{
+      text-decoration: none;
+      background: teal;
+      color: white;
+      border-radius: 30px;
+      font-size: large;
+      padding: 3px 10px;
+  }
+  .button a:hover{
+      background: rgb(0,0,0);
+      background: linear-gradient(197deg, rgba(0,0,0,1) 36%, rgba(0,128,128,1) 67%);
+  }
+  small{color: teal;}
+  
+  
+  @media (max-width: 768px) {
+      .msg> p >strong{
+          font-size: 0.7rem;
+          margin: 0;
+        }
+      .text h1{
+          font-size: 35px;
+      }
+      .text p{
+          width: 90%;
+      }
+      .TopHeadingAndBtn h1{
+          font-size: 25px;
+      }
+      .TopHeadingAndBtn p span{
+          font-size: 30px;
+      }
+      .cartCont .product {
+          min-width: 49%;
+          margin:  0 10px  0 0;
+      }
+      .detail, .button{
+          font-size: 16px;
+         align-items: center;
+         justify-content: baseline;
+      }
+      a{
+          padding: 6px 10px;
+      }
+  }
+  
+  /* carausel */
+  
+  
+  .carousel-inner .carousel-item{
+      position: sticky;
+      max-width: auto;
+      max-height: 500px;
+      /* width: 100%; */
+      position: sticky;
+      
+  }
+  
+  .carousel-inner .carousel-item img{
+     width: 100%;
+      /* max-height: 600px; */
+      /* width: 100%; */
+      
+  }
+  .card1{
+      max-width:2000px ;
+     
+  }
+  
+  .card1 .card .row{
+      width: 100%;
+    
+  }
+  
+  .card1 .card .row .col-md-4 img{
+      width: 100%;
+  }
+  
+  .ssContainer{
+      display: flex;
+      max-width: 2000px;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+  }
+  .ssContainer img{
+  width: 100%;
+  }
+  
+  
+  .abt-container{
+      width: 90%;
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  .abt{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+  }
+  .abt-img{
+      flex: 1;
+      margin-right: 40px;
+      overflow: hidden;
+   
+  }
+  .abt-img img{
+      max-width: 100%;
+      height: auto;
+      display: block;
+      transition: 0.5s ease;
+  }
+  .abt-img:hover img{
+     transform: scale(1.2);
+  }
+  .abt-content{
+      flex: 1;
+  }
+  .abt-content h2{
+    font-size: 23px;
+    margin-bottom: 15px;
+    color: black;
+  }
+  .abt-content p{
+    font-size: 18px;
+    line-height: 1.5;
+    color: black;
+  }
+  .abt-content .shopNow{
+    display: inline-block;
+    padding: 10px 20px; 
+    font-size: 19px;
+    text-decoration: none;
+    border-radius: 25px;
+      margin-top: 15px;
+      transition: 0.3s ease;
+      background: teal;
+      color: white;
+  }
+  .abt-content .shopNow:hover{
+      background: rgb(0,0,0);
+      background: linear-gradient(197deg, rgba(0,0,0,1) 36%, rgba(0,128,128,1) 67%);
+  }
+  @media screen and (max-width:768px) {
+      .abt-container{
+          padding: 0px;
+      }
+      .abt{
+          padding: 20px;
+          flex-direction: column;
+          margin-left: 10%;
+          text-align: center;
+      }
+      .abt-img img{
+     margin-right: 0px;
+     margin-bottom: 20px;
+      }
+      .abt-content p{
+          padding: 0px;
+          font-size: 16px;
+      }
+      .abt-content .shopNow{
+      font-size: 16px;
+        }
+  }

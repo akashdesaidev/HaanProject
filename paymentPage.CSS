@@ -1,0 +1,147 @@
+/* Some basic styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  padding: 10px;
+  gap: 100px;
+}
+
+.products {
+  flex: 1;
+  position: relative;
+}
+
+.products::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -10%;
+  height: 110%;
+  transform: translateX(-50%);
+  width: 1px; /* Adjust the width as needed */
+  background-color: #433f3f; /* Adjust the color as needed */
+}
+.details {
+  flex: 1;
+}
+
+.details a {
+  text-decoration: none;
+  color: #a1a1a1;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 86%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.payButton {
+  display: inline;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.payButton:hover {
+  background-color: #45a049;
+}
+
+#errorText {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#productList div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  /* border: 1px solid black; */
+  padding: 10px;
+  align-items: center;
+}
+#productList h2{
+    margin-right: 20px;
+}
+#productList img {
+  width: 100px;
+  border-radius: 10px;
+}
+.vertical-line {
+  border-left: 1px solid #000;
+  height: 100%; /* Adjust the height as needed */
+}
+
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+}
+.subtotal div {
+  text-align: center;
+  align-items: center;
+}
+.quantity {
+  position: absolute;
+ 
+  color: white;
+  background-color: rgb(154, 151, 151);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  margin-top: -90px;
+  margin-left: 90px;
+
+}
+#productList{
+    height: 550px; /* Set the desired height for the container */
+  overflow: auto;
+}
+.product-overlay {
+    position: absolute;
+    top: 0;
+    left: 75%;
+    width: 10%;
+    height: 10%;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the background color and opacity as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .overlay-text {
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+  }  
+  
+.product {
+    position: relative;
+    margin: 10px;
+  }

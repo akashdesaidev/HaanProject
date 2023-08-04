@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            display: flex;
+            justify-content: center;
+             align-items: center;
+             margin-top: 100px;
+        }
+        button{
+            padding: 10px 20px;
+            color: white;
+            background-color: teal;
+            border-radius: 3px;
+            border: none;
+           margin-left: 44%;
+           margin-top: 30px;
+        }
+        button:hover{
+            background-color: darkgreen;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+<body>
+    
+    <div>
+        <img src="https://thumbs.gfycat.com/GracefulImpishFlea-size_restricted.gif">
+    </div>
+    <button id="done">Continue shopping</button>
+</body>
+</html>
+<script>
+    let ind= document.getElementById("done");
+    ind.addEventListener("click",nextpage);
+
+    function nextpage(){
+        window.location.href = `index.html`
+    }
+</script>
