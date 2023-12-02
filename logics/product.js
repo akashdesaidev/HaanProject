@@ -1,4 +1,37 @@
-const URL = process.env.URL || `http://localhost:3000`;
+const URL = `http://localhost:3000`;
+let CookiesToken = getCookie("token");
+function getUserDetails() {
+  CookiesToken = getCookie("token") || "";
+  var jwtToken = CookiesToken.split(" ")[1];
+
+  if (!jwtToken) {
+    return;
+  }
+
+  const [header, payload, signature] = jwtToken.split(".");
+  const decodedHeader = JSON.parse(atob(header));
+  const decodedPayload = JSON.parse(atob(payload));
+  const user = decodedPayload.user;
+  console.log(user);
+  return user;
+}
+
+function getCookie(name) {
+  const cookies = document.cookie.split("; ");
+  for (const cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.split("=");
+    if (cookieName === name) {
+      return cookieValue;
+    }
+  }
+  return null;
+}
+
+const user = getUserDetails();
+console.log("run");
+if (!user) {
+  window.location.href = "signin.html";
+}
 
 let filterText = document.getElementById("ans-filter");
 filterText.style.cursor = "pointer";
@@ -33,9 +66,7 @@ let pageNumber = 1;
 let fetchedData = null;
 const fetchProducts = async (pageNum) => {
   try {
-    let res = await fetch(
-      `${URL}/products?limit=12&page=${pageNum}`
-    );
+    let res = await fetch(`${URL}/products?limit=12&page=${pageNum}`);
     let data = await res.json();
 
     console.log(data);

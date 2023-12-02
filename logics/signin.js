@@ -4,6 +4,7 @@ const email = document.getElementById("email");
 const password = document.getElementById("password");
 let token = JSON.parse(localStorage.getItem("token")) || "";
 let dataArr = JSON.parse(localStorage.getItem("acc-data")) || [];
+let CookiesToken = getCookie("token");
 
 const SignInPost = async (data) => {
   try {
@@ -17,6 +18,17 @@ const SignInPost = async (data) => {
 
     const result = await response.json(); // Parse the JSON response
 
+    const expirationDate = new Date();
+    expirationDate.setDate(expirationDate.getDate() + 7); // Expires in 7 days
+
+    //setting token in cookies
+    document.cookie = `token=${JSON.stringify(
+      `Bearer ${result.token}`
+    )}; expires=${expirationDate.toUTCString()}; path=/`;
+
+    // console.log(CookiesToken);
+    getUserDetails();
+
     localStorage.setItem("token", JSON.stringify(`Bearer ${result.token}`));
     return result;
   } catch (error) {
@@ -25,8 +37,34 @@ const SignInPost = async (data) => {
   }
 };
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+getUserDetails();
+
+export default function getUserDetails() {
+  CookiesToken = getCookie("token") || "";
+  var jwtToken = CookiesToken.split(" ")[1];
+  if (!jwtToken) {
+    return;
+  }
+  const [header, payload, signature] = jwtToken.split(".");
+  const decodedHeader = JSON.parse(atob(header));
+  const decodedPayload = JSON.parse(atob(payload));
+  const user = decodedPayload.user;
+  console.log(user);
+}
+
+// console.log(CookiesToken);
+function getCookie(name) {
+  const cookies = document.cookie.split("; ");
+  for (const cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.split("=");
+    if (cookieName === name) {
+      return cookieValue;
+    }
+  }
+  return null;
+}
+
+const fun = async (e) => {
   const emailValue = email.value.trim();
   const passwordValue = password.value.trim();
 
@@ -70,6 +108,12 @@ form.addEventListener("submit", async (e) => {
     setError(email, "Incorrect email or password");
     setError(password, "Incorrect email or password");
   }
+};
+document.body.addEventListener("submit", function (e) {
+  console.log("Before preventing default");
+  e.preventDefault();
+  console.log("After preventing default");
+  fun();
 });
 
 const setError = (element, message) => {
