@@ -1,3 +1,4 @@
+const URL = `http://localhost:3000`
 const form = document.getElementById("form");
 const username = document.getElementById("username");
 const email = document.getElementById("email");
@@ -35,7 +36,7 @@ form.addEventListener("submit", (e) => {
 
 const SignupPost = async (data) => {
   try {
-    const response = await fetch("http://localhost:3000/signup", {
+    const response = await fetch(`${URL}/signup`, {
       method: "POST", // Specify the request method
       headers: {
         "Content-Type": "application/json", // Set the content type to JSON

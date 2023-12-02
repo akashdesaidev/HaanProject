@@ -1,3 +1,5 @@
+const URL = process.env.URL || `http://localhost:3000`;
+
 let filterText = document.getElementById("ans-filter");
 filterText.style.cursor = "pointer";
 filterText.addEventListener("click", function () {
@@ -32,14 +34,13 @@ let fetchedData = null;
 const fetchProducts = async (pageNum) => {
   try {
     let res = await fetch(
-      `http://localhost:3000/products?limit=12&page=${pageNum}`
+      `${URL}/products?limit=12&page=${pageNum}`
     );
     let data = await res.json();
 
     console.log(data);
-   
+
     totalPages = data.totalPages;
-    
 
     document.getElementById("ans-main-product-container").innerHTML = `
             <div id="loading-img-cont">
@@ -49,7 +50,6 @@ const fetchProducts = async (pageNum) => {
     setTimeout(() => {
       displayData(data.products);
     }, 100);
-
   } catch (error) {
     // console.log(error);
   }
