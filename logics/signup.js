@@ -1,12 +1,12 @@
-const form = document.getElementById('form');
-const username = document.getElementById('username');
-const email = document.getElementById('email');
-const password = document.getElementById('password');
-const password2 = document.getElementById('password2');
+const form = document.getElementById("form");
+const username = document.getElementById("username");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const password2 = document.getElementById("password2");
 
-let dataArr = JSON.parse(localStorage.getItem('acc-data')) || [];
+// let dataArr = JSON.parse(localStorage.getItem('acc-data')) || [];
 
-form.addEventListener('submit', e => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
   let userName1 = username.value;
   let email1 = email.value;
@@ -16,7 +16,7 @@ form.addEventListener('submit', e => {
   const errors = validateInputs();
 
   if (errors.length > 0) {
-    errors.forEach(error => {
+    errors.forEach((error) => {
       const inputField = error.input;
       const errorMessage = error.message;
       setError(inputField, errorMessage);
@@ -24,51 +24,63 @@ form.addEventListener('submit', e => {
     return;
   }
 
-  const emailExists = dataArr.some(data => data.email === email1);
-  if (emailExists) {
-    setError(email, 'Email address already exists');
-    return;
-  }
-
   var dataObj = {
-    userName: userName1,
+    name: userName1,
     email: email1,
-    password1: password1,
-    password2: password2val
+    password: password1,
   };
-  dataArr.push(dataObj);
-  localStorage.setItem('acc-data', JSON.stringify(dataArr));
 
- 
-  clearErrors();
-
-  
-  clearFields();
-
- 
-  showSuccessPopup();
+  const res = SignupPost(dataObj);
 });
+
+const SignupPost = async (data) => {
+  try {
+    const response = await fetch("http://localhost:3000/signup", {
+      method: "POST", // Specify the request method
+      headers: {
+        "Content-Type": "application/json", // Set the content type to JSON
+      },
+      body: JSON.stringify(data), // Convert data to JSON string and include in the request body
+    });
+
+    const result = await response.json(); // Parse the JSON response
+    console.log(result);
+
+    if (result.message == "user already exist") {
+      setError(email, "Email address already exists");
+      return;
+    }
+    clearErrors();
+    clearFields();
+    showSuccessPopup();
+    return result;
+  } catch (error) {
+    console.error("Error during SignupPost:", error.message);
+    throw error; // Rethrow the error for the calling code to handle
+  }
+};
 
 const setError = (element, message) => {
   const inputControl = element.parentElement;
-  const errorDisplay = inputControl.querySelector('.error');
+  const errorDisplay = inputControl.querySelector(".error");
 
   errorDisplay.innerText = message;
-  inputControl.classList.add('error');
-  inputControl.classList.remove('success');
+  inputControl.classList.add("error");
+  inputControl.classList.remove("success");
 };
 
-const setSuccess = element => {
+const setSuccess = (element) => {
   const inputControl = element.parentElement;
-  const errorDisplay = inputControl.querySelector('.error');
+  const errorDisplay = inputControl.querySelector(".error");
 
-  errorDisplay.innerText = '';
-  inputControl.classList.add('success');
-  inputControl.classList.remove('error');
+  errorDisplay.innerText = "";
+  inputControl.classList.add("success");
+  inputControl.classList.remove("error");
 };
 
-const isValidEmail = email => {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const isValidEmail = (email) => {
+  const re =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 };
 
@@ -80,30 +92,33 @@ const validateInputs = () => {
   const passwordValue = password.value.trim();
   const password2Value = password2.value.trim();
 
-  if (usernameValue === '') {
-    errors.push({ input: username, message: 'Username is required' });
+  if (usernameValue === "") {
+    errors.push({ input: username, message: "Username is required" });
   } else {
     setSuccess(username);
   }
 
-  if (emailValue === '') {
-    errors.push({ input: email, message: 'Email is required' });
+  if (emailValue === "") {
+    errors.push({ input: email, message: "Email is required" });
   } else if (!isValidEmail(emailValue)) {
-    errors.push({ input: email, message: 'Provide a valid email address' });
+    errors.push({ input: email, message: "Provide a valid email address" });
   } else {
     setSuccess(email);
   }
 
-  if (passwordValue === '') {
-    errors.push({ input: password, message: 'Password is required' });
+  if (passwordValue === "") {
+    errors.push({ input: password, message: "Password is required" });
   } else if (passwordValue.length < 8) {
-    errors.push({ input: password, message: 'Password must be at least 8 characters' });
+    errors.push({
+      input: password,
+      message: "Password must be at least 8 characters",
+    });
   } else {
     setSuccess(password);
   }
 
-  if (password2Value === '') {
-    errors.push({ input: password2, message: 'Please confirm your password' });
+  if (password2Value === "") {
+    errors.push({ input: password2, message: "Please confirm your password" });
   } else if (password2Value !== passwordValue) {
     errors.push({ input: password2, message: "Passwords don't match" });
   } else {
@@ -114,32 +129,32 @@ const validateInputs = () => {
 };
 
 const clearErrors = () => {
-  const errorElements = document.querySelectorAll('.error');
-  errorElements.forEach(element => {
-    element.innerText = '';
+  const errorElements = document.querySelectorAll(".error");
+  errorElements.forEach((element) => {
+    element.innerText = "";
     const inputControl = element.parentElement;
-    inputControl.classList.remove('error');
+    inputControl.classList.remove("error");
   });
 };
 
 const clearFields = () => {
-  username.value = '';
-  email.value = '';
-  password.value = '';
-  password2.value = '';
+  username.value = "";
+  email.value = "";
+  password.value = "";
+  password2.value = "";
 };
 
 const showSuccessPopup = () => {
   // alert('Account created successfully!');
   Swal.fire({
-    title: 'Account created successfully!',
-    confirmButtonColor: 'black',
+    title: "Account created successfully!",
+    confirmButtonColor: "black",
     showClass: {
-      popup: 'animate_animated animate_fadeInDown'
+      popup: "animate_animated animate_fadeInDown",
     },
     hideClass: {
-      popup: 'animate_animated animate_fadeOutUp'
-    }
-  })
-  window.location.href = "signin.html"
+      popup: "animate_animated animate_fadeOutUp",
+    },
+  });
+  window.location.href = "signin.html";
 };

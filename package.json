@@ -1,13 +1,13 @@
 {
   "dependencies": {
-    "json-server": "^0.17.3"
+    "json-server": "^0.17.3",
+    "nodemon": "^3.0.2"
   },
   "name": "payment-page",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.html"
   },
   "keywords": [],
   "author": "",
