@@ -1,6 +1,4 @@
-
 document.getElementById("payButton").onclick = function (e) {
-
   var name = $("#name").val();
   var email = $("#email").val();
   var address = $("#address").val();
@@ -16,42 +14,43 @@ document.getElementById("payButton").onclick = function (e) {
     $("#errorText").text("Please fill in all fields.");
     return;
   } else {
-    let payable = localStorage.getItem("TotalAmount") * 100 || 10000;
-var options = {
-  key: "rzp_test_hsSuMKzjGVmfGi", // Replace with your Razorpay API key
-  amount: payable,
-  currency: "INR",
-  name: "HAAN",
-  description: "Payment for Products",
-  // Order ID generated from the server
-  handler: function (response) {
-    // Payment successful callback
-    // alert(
-        
-    //   "Payment successful. Transaction ID: " + response.razorpay_payment_id
-    // );
+    let payable =Number(document.querySelector("#Total").innerText.split(" ")[1])*100;
+    var options = {
+      key: "rzp_test_hsSuMKzjGVmfGi", // Replace with your Razorpay API key
+      amount: payable,
+      currency: "INR",
+      name: "HAAN",
+      description: "Payment for Products",
+      // Order ID generated from the server
+      handler: function (response) {
+        // Payment successful callback
+        // alert(
 
+        //   "Payment successful. Transaction ID: " + response.razorpay_payment_id
+        // );
 
-    Swal.fire({
-      title: "Payment successful. Transaction ID: "  + response.razorpay_payment_id,
-      confirmButtonColor: 'black',
-      showClass: {
-        popup: 'animate_animated animate_fadeInDown'
+        Swal.fire({
+          title:
+            "Payment successful. Transaction ID: " +
+            response.razorpay_payment_id,
+          confirmButtonColor: "black",
+          showClass: {
+            popup: "animate_animated animate_fadeInDown",
+          },
+          hideClass: {
+            popup: "animate_animated animate_fadeOutUp",
+          },
+        });
+        window.location.href = "thankyou.html"; // Replace with your thank you page URL
       },
-      hideClass: {
-        popup: 'animate_animated animate_fadeOutUp'
-      }
-    })
-    window.location.href = "thankyou.html"; // Replace with your thank you page URL
-  },
-  prefill: {
-    name: name,
-    email: email,
-    contact: "",
-  },
-};
+      prefill: {
+        name: name,
+        email: email,
+        contact: "",
+      },
+    };
 
-var rzp1 = new Razorpay(options);
+    var rzp1 = new Razorpay(options);
     rzp1.open();
   }
   e.preventDefault();
@@ -79,3 +78,7 @@ var rzp1 = new Razorpay(options);
 //     rzp1.open();
 //     e.preventDefault();
 // }
+
+setTimeout(() => {
+  console.log();
+}, 2000);

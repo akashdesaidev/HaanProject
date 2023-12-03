@@ -1,8 +1,13 @@
-document.querySelector("button").addEventListener("click", check);
-var cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+let Globalcart = [];
 
-
-function getPrdouctCard(productName, productQty, discountPrice, productImage, index) {
+function getPrdouctCard(
+  productName,
+  productQty,
+  discountPrice,
+  productImage,
+  index
+) {
+  // console.log(productName, productQty, discountPrice, productImage, index);
   return `
   <div style="border-radius: 10px; border: 1px solid rgb(0 19 37 / 8%); margin: 15px;">
         <div style="display: flex; justify-content: space-between; padding: 10px;">
@@ -12,7 +17,7 @@ function getPrdouctCard(productName, productQty, discountPrice, productImage, in
             </div>
             <div style="width: 60%; padding: 0 10px; text-align: left; font-size: 14px; color:white;">
               <div>${productName}</div>
-              <div></div>
+              <div>price- ₹ ${discountPrice}</div>
             </div>
           </div>
           <div>
@@ -23,17 +28,20 @@ function getPrdouctCard(productName, productQty, discountPrice, productImage, in
           <hr style="border: none; border-bottom: 1px solid rgb(112 112 112 / 19%);">
         <div style="display: flex; justify-content: space-between;padding: 10px;">
           <div style="color:white; font-size: 16px;">
-            Quantity : <span class="productQty"><select onchange="updateQty(event, ${index})" style="border: none;outline: none;font-size: 18px;">
-                <option ${productQty === 1 ? "selected" : ""} value="1">1</option>
-                <option ${productQty === 2 ? "selected" : ""} value="2">2</option>
-                <option ${productQty === 3 ? "selected" : ""} value="3">3</option>
-                <option ${productQty === 4 ? "selected" : ""} value="4">4</option>
-                <option ${productQty === 5 ? "selected" : ""} value="5">5</option>
-              </select>
-            </span>
+          Quantity: <span class="productQty">
+          <select onchange="updateQty(this.value, '${index}')" style="border: none; outline: none; font-size: 18px;">
+            <option ${productQty === 1 ? "selected" : ""} value="1">1</option>
+            <option ${productQty === 2 ? "selected" : ""} value="2">2</option>
+            <option ${productQty === 3 ? "selected" : ""} value="3">3</option>
+            <option ${productQty === 4 ? "selected" : ""} value="4">4</option>
+            <option ${productQty === 5 ? "selected" : ""} value="5">5</option>
+          </select>
+        </span>
           </div>
           <div style="color: white; font-size: 16px; font-weight: 600;">
-             <span class="discountPrice" >₹${discountPrice}</span>
+             <span class="discountPrice" >total:- ₹${
+               productQty * discountPrice
+             }</span>
           </div>
         </div>
         </div>
@@ -56,141 +64,180 @@ const couponHTML = `
         </svg>
         </div>
         <input placeholder="Enter Coupon Code" type="text" id="promo" style="margin-bottom:50%;">
-        <button onclick="check()">Apply</button>
+        <button onclick="checkDiscount()">Apply</button>
       </div> <br>
     </div>
 `;
 
+const patchCartList = (quantity, id) => {
+  const URL = `http://localhost:3000`;
+  let token = JSON.parse(getCookie("token"));
+  fetch(`${URL}/cart/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+    body: JSON.stringify({
+      quantity, // Assuming quantity is a variable holding the new quantity value
+    }),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      displayCart(result);
+    })
+    .catch((error) => {
+      console.error("Error during getWishList:", error.message);
+      throw error;
+    });
+};
 
-function updateQty(event, position) {
-  var cart = JSON.parse(localStorage.getItem("cartItems")) || [];
-  cart.forEach((item, index) => {
-    if (index === position) {
-      item.productQty = parseInt(event.target.value);
-    }
-  });
-  localStorage.setItem("cartItems", JSON.stringify(cart))
-  displayCart(cart);
-  caltotal(cart);
-  displayCartItemsCount(cart);
+async function updateQty(quantity, id) {
+  patchCartList(quantity, id);
 }
-var itemscount = localStorage.getItem("countitem")
+
+var itemscount = localStorage.getItem("countitem");
 function displayCartItemsCount(cart) {
   var cartItemsCount = cart && cart.length;
   var cartCountValue = "";
 
-   if  (cartItemsCount === 0) {
+  if (cartItemsCount === 0) {
     cartCountValue = "• No item";
-  }
-
-  else if  (cartItemsCount === 1) {
+  } else if (cartItemsCount === 1) {
     cartCountValue = " 1 item";
-
   } else if (cartItemsCount > 1) {
     cartCountValue = " " + cartItemsCount + " items";
-
   }
   document.getElementById("per").innerHTML = cartCountValue;
-  localStorage.setItem("countitem", cartCountValue)
+  localStorage.setItem("countitem", cartCountValue);
 }
 
-
-
 function displayCart(cart) {
+  Globalcart = cart;
+  displayCartItemsCount(cart);
   document.querySelector("#bagItems").innerHTML = "";
   cart.map(function (elem, index) {
-    var card = getPrdouctCard(elem.name, elem.productQty || 1, elem.price, elem.img, index);
+    var card = getPrdouctCard(
+      elem.name,
+      elem.quantity || 1,
+      elem.price,
+      elem.img,
+      elem.id
+    );
     var div = document.createElement("div");
     div.innerHTML = card;
     document.querySelector("#bagItems").append(div);
   });
   if (cart && cart.length) {
-    var couponDiv = document.createElement("div")
+    var couponDiv = document.createElement("div");
     couponDiv.innerHTML = couponHTML;
     document.querySelector("#bagItems").append(couponDiv);
   }
+  caltotal(cart);
 }
 
 function delrow(index) {
   var cart = JSON.parse(localStorage.getItem("cartItems")) || [];
   cart = cart.filter((item, i) => i !== index);
-  localStorage.setItem("cartItems", JSON.stringify(cart))
-  displayCart(cart);
-  caltotal(cart);
+  localStorage.setItem("cartItems", JSON.stringify(cart));
+
   displayCartItemsCount(cart);
   if (cart.length === 0) {
     document.getElementById("grandTotalParent").style.display = "none";
     document.getElementById("child").style.display = "block";
     document.getElementById("pngImage").style.display = "none";
     var offerElement = document.getElementById("Offer");
-    if (offerElement)
-      offerElement.style.display = "none";
+    if (offerElement) offerElement.style.display = "none";
   }
 }
 var pert = localStorage.getItem("cartvalue");
-function caltotal() {
-  var cart = JSON.parse(localStorage.getItem("cartItems")) || [];
-  var carval = 0;
-  for (var i = 0; i < cart.length; i++) {
-    carval += parseInt(cart[i].price) * (cart[i] && cart[i].productQty || 1);
 
+function caltotal(Array) {
+  let total = 0;
+  for (let i = 0; i < Array.length; i++) {
+    total += Array[i].quantity * Array[i].price;
   }
-  document.getElementById("grandTotalPrice").textContent = carval;
-  localStorage.setItem("cartvalue", carval);
 
+  document.getElementById("grandTotalPrice").textContent = total;
+  return total;
 }
 
-function check() {
-  var cart = JSON.parse(localStorage.getItem("cartItems")) || [];
-  var total = 0;
-  cart.forEach((item) => {
-    total = total + Number(item.price);
-  });
+function checkDiscount() {
+  let total = caltotal(Globalcart);
 
-  //------------------------------------------------------------------------- for  discount------------------------------------------------------------------------------------------ 
+  //------------------------------------------------------------------------- for  discount------------------------------------------------------------------------------------------
 
   var ch = document.getElementById("promo").value;
-  if (ch == "Haan10") {
+  if (ch == "Haan20") {
     var temp = document.createElement("p");
     temp.setAttribute("class", "krp");
 
     // alert(temp = " 25% off applied");
     Swal.fire({
-      title: 'Hurray!!! 🎉 30% off applied..',
-      confirmButtonColor: 'black',
+      title: "Hurray!!! 🎉 20% off applied..",
+      confirmButtonColor: "black",
       showClass: {
-        popup: 'animate_animated animate_fadeInDown'
+        popup: "animate_animated animate_fadeInDown",
       },
       hideClass: {
-        popup: 'animate_animated animate_fadeOutUp'
-      }
-    })
+        popup: "animate_animated animate_fadeOutUp",
+      },
+    });
 
-    var change = (total * 3) / 10;
-    document.getElementById("grandTotalPrice").textContent = total - change;
+    var discount = (total / 100) * 20;
+    document.getElementById("grandTotalPrice").textContent = total - discount;
+  } else {
+    Swal.fire({
+      title: "Coupon not valid...",
+      confirmButtonColor: "black",
+      showClass: {
+        popup: "animate_animated animate_fadeInDown",
+      },
+      hideClass: {
+        popup: "animate_animated animate_fadeOutUp",
+      },
+    });
   }
 }
 
 //------------------------------------------------------------------------------ for calling cart---------------------------------------------------------------------------------------------------------------------------------------------------------------
-function showhaanCart() {
-    console.log(`hiii`);
-  var cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+const fetchCartList = () => {
+  const URL = `http://localhost:3000`;
+  let token = JSON.parse(getCookie("token"));
+  fetch(`${URL}/cart`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: token,
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      DisplayCartData(result);
+    })
+    .catch((error) => {
+      console.error("Error during getWishList:", error.message);
+      throw error;
+    });
+};
+
+const DisplayCartData = (cart) => {
+  console.log(cart);
   var offerElement = document.getElementById("Offer");
   if (cart && cart.length > 0) {
     document.getElementById("child").style.display = "none";
     document.getElementById("grandTotalParent").style.display = "block";
     document.getElementById("pngImage").style.display = "block";
-   
-    if (offerElement)
-      document.getElementById("Offer").style.display = "block";
+
+    if (offerElement) document.getElementById("Offer").style.display = "block";
   } else {
     document.getElementById("grandTotalParent").style.display = "none";
     document.getElementById("child").style.display = "block";
     document.getElementById("pngImage").style.display = "none";
 
-    if (offerElement)
-      document.getElementById("Offer").style.display = "none";
-      document.getElementById("pngImage").style.display = "none";
+    if (offerElement) document.getElementById("Offer").style.display = "none";
+    document.getElementById("pngImage").style.display = "none";
   }
   var cartelements = document.getElementsByClassName("haanCart");
   for (let i = 0; i < cartelements.length; i++) {
@@ -199,8 +246,6 @@ function showhaanCart() {
       element.style.display = "none";
       document.querySelector(".haancartinnerdiv").style.display = "none";
     } else {
-      displayCartItemsCount(cart);
-      caltotal(cart)
       displayCart(cart);
       element.style.display = "block";
 
@@ -210,5 +255,10 @@ function showhaanCart() {
         }, 10);
       }
     }
-  };
+  }
+};
+
+function showhaanCart() {
+  //console.log(`cart button clicked`);
+  fetchCartList();
 }

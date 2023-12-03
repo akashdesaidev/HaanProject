@@ -436,10 +436,10 @@
       document.querySelector("#haantcartdiv").innerHTML = haanCart();
     </script>
 
-    <script src="./components/toggleCart.js"></script>
     <script type="module" src="./components/navbar.js"></script>
     <script type="module" src="./logics/getuserdetails.js"></script>
-    <script type="module" src="./logics/getUserDetails.js"></script>
+    <script src="./components/toggleNavbar.js"></script>
+    <script src="./components/toggleCart.js"></script>
 
     <script
       type="module"
@@ -468,7 +468,6 @@
   </body>
 </html>
 
-<script src="./components/toggleNavbar.js"></script>
 <!-- Initialize Swiper -->
 <script>
   var swiper = new Swiper(".mySwiper", {
@@ -492,8 +491,6 @@
 
 <!-- cart functionality -->
 <script>
-
-
   let span = document.getElementsByTagName("span");
 
   let product = document.getElementsByClassName("product");

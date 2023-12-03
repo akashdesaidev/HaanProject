@@ -34,7 +34,10 @@ btn.addEventListener("click", () => {
   document.cookie = `token=""; expires=""}; path=/`;
   btn.innerText = "Sign in";
 });
-btn.innerText = user.username;
+
+if (user) {
+  btn.innerText = user.username;
+}
 const navUser = document.getElementById("username");
 
 navUser.innerHTML = "";

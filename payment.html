@@ -5,19 +5,45 @@
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="paymentPage.CSS" />
+    <link rel="stylesheet" href="./Styles/product.css" />
 
+    <link rel="stylesheet" href="./Styles/footer.css" />
+
+    <link rel="stylesheet" href="./Styles/cart.css" />
+
+    <link
+      href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
     <!-- for alert -->
-    <link rel="stylesheet" href="sweetalert2.min.css" />
+
+    
+    <link rel="stylesheet" href="./Styles/navbar.css" />
   </head>
   <body>
+    <div id="navv">
+      <!-- navbar from components -->
+
+      <div id="slider">
+        <figure>
+          <div>Free shipping over 35 ₹</div>
+          <div>Subscribe to our Newsletter</div>
+          <div>Get Amazing Discounts!</div>
+          <div>Get The Special Deals</div>
+        </figure>
+      </div>
+
+      <header id="navHeader"></header>
+    </div>
+
     <div class="container">
       <div class="details">
         <div>
-          <div>
-            <a href="/">
-              <img src="./haanNew logo.png" alt="Haan Logo" />
-            </a>
-          </div>
           <div>
             <a href="">Cart</a>
             <span> > </span>
@@ -96,7 +122,7 @@
         <hr />
         <div class="subtotal">
           <div><h2>subtotal</h2></div>
-          <div><h2 id="subTotal">1000</h2></div>
+          <div><h2 id="subTotal"></h2></div>
         </div>
         <div class="subtotal">
           <div><h2>shipping</h2></div>
@@ -112,7 +138,7 @@
         </div>
         <div class="subtotal">
           <div><h2>Total</h2></div>
-          <div><h2 id="Total">1100</h2></div>
+          <div><h2 id="Total"></h2></div>
         </div>
       </div>
     </div>
@@ -122,6 +148,8 @@
     <!-- <script src="./scripts/cart items.js"></script> -->
     <script src="./scripts/get itemsfromLocaStorage.js"></script>
   </body>
+  <script type="module" src="./components/navbar.js"></script>
+  <script type="module" src="./logics/getuserdetails.js"></script>
 </html>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -13,7 +13,6 @@ function getUserDetails() {
   const decodedPayload = JSON.parse(atob(payload));
   let cookiesuser = decodedPayload.user;
 
- 
   if (window.location == "http://localhost:5500/product.html") {
     if (!cookiesuser) {
       window.location.href = "signin.html";
@@ -33,9 +32,7 @@ function getCookie(name) {
   }
   return null;
 }
-
 window.getCookie = getCookie;
-
 const btn = document.createElement("div");
 btn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -43,7 +40,11 @@ btn.addEventListener("click", (e) => {
   btn.innerText = "Sign in";
   const user = getUserDetails();
 });
-btn.innerText = user.username;
+
+if (user) {
+  btn.innerText = user.username;
+}
+
 const navUser = document.getElementById("username");
 
 navUser.innerHTML = "";

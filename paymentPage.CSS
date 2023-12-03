@@ -2,7 +2,16 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  max-height: 100vh;
+  
+}
+.ion-icon{
+  font-size: 30px;
+}
+.ion-icon :hover{
+  color: red;
 }
 
 h1 {
