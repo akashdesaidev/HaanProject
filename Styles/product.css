@@ -6,7 +6,11 @@
 #ans-m-img img {
     width: 80%;
 }
-
+.Account {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
 #ans-m-img {
     display: flex;
     justify-content: center;

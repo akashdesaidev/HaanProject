@@ -22,9 +22,8 @@ const SignInPost = async (data) => {
     expirationDate.setDate(expirationDate.getDate() + 7); // Expires in 7 days
 
     //setting token in cookies
-    document.cookie = `token=${JSON.stringify(
-      `Bearer ${result.token}`
-    )}; expires=${expirationDate.toUTCString()}; path=/`;
+    const token = JSON.stringify(`Bearer ${result.token}`);
+    document.cookie = `token=${token}; expires=${expirationDate.toUTCString()}; path=/`;
 
     // console.log(CookiesToken);
     getUserDetails();
@@ -100,8 +99,8 @@ const fun = async (e) => {
     });
 
     setTimeout(() => {
-      window.location.href = "index.html";
-    }, 1000);
+      window.location.href= "index.html";
+    }, 2000);
     email.value = "";
     password.value = "";
   } else {
@@ -110,9 +109,8 @@ const fun = async (e) => {
   }
 };
 document.body.addEventListener("submit", function (e) {
-  console.log("Before preventing default");
   e.preventDefault();
-  console.log("After preventing default");
+
   fun();
 });
 
