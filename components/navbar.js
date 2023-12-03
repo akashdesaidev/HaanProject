@@ -1,7 +1,6 @@
 const navbar = () => {
   return `
    
-
   <div class="account" >
   <a href="signin.html" class="Account"> <span class="material-symbols-outlined" > person </span>
   <div style="color:white;"id="username">

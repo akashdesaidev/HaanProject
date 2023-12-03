@@ -81,4 +81,6 @@ const footer =()=>{
   </div>
   `
 }
+
+document.querySelector(".footer").innerHTML = footer();
 export default footer ;

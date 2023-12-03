@@ -1,6 +1,5 @@
 const URL = `http://localhost:3000`;
 
-// console.log(getCookie())
 let filterText = document.getElementById("ans-filter");
 filterText.style.cursor = "pointer";
 filterText.addEventListener("click", function () {
@@ -359,17 +358,10 @@ const displayData = (data) => {
       );
     });
 
-    ion_icon.addEventListener("click", function () {
-      let isProductAlreadyPresent = false;
-      if (wlArr.length > 0) {
-        wlArr.forEach((item) => {
-          if (item.id === element.id) {
-            isProductAlreadyPresent = true;
-            return;
-          }
-        });
-      }
-      if (isProductAlreadyPresent) {
+    ion_icon.addEventListener("click", async function () {
+      const res = await wishList(element);
+
+      if (res.message == "Product is already in wishlist") {
         // alert("Product is already present in your wishlist.");
         Swal.fire({
           title: "Product is already present in your wishlist.",
@@ -382,9 +374,6 @@ const displayData = (data) => {
           },
         });
       } else {
-        wlArr.push(element);
-        localStorage.setItem("cart-wish-db", JSON.stringify(wlArr));
-        // alert("Product added to your wishlist.");
         Swal.fire({
           title: "Product added to your wishlist.",
           confirmButtonColor: "black",
@@ -397,6 +386,31 @@ const displayData = (data) => {
         });
       }
     });
+
+    const wishList = async (data) => {
+      let token = JSON.parse(getCookie("token"));
+      const product = {
+        productId: element._id,
+        quantity: 1,
+      };
+
+      try {
+        const response = await fetch(`${URL}/wishlist`, {
+          method: "POST", // Specify the request method
+          headers: {
+            "Content-Type": "application/json",
+            authorization: token, // Set the content type to JSON
+          },
+          body: JSON.stringify(product), // Convert data to JSON string and include in the request body
+        });
+
+        const result = await response.json(); // Parse the JSON response
+        return result;
+      } catch (error) {
+        console.error("Error during SignupPost:", error.message);
+        throw error; // Rethrow the error for the calling code to handle
+      }
+    };
 
     const addTOCart = async (data) => {
       let token = JSON.parse(getCookie("token"));
@@ -416,8 +430,6 @@ const displayData = (data) => {
         });
 
         const result = await response.json(); // Parse the JSON response
-
-        console.log(result);
         return result;
       } catch (error) {
         console.error("Error during SignupPost:", error.message);
@@ -425,31 +437,38 @@ const displayData = (data) => {
       }
     };
 
-    cardBtn.addEventListener("click", function () {
-      let isProductAlreadyPresent = false;
-      addTOCart(element);
+    cardBtn.addEventListener("click", async function () {
+      const res = await addTOCart(element);
 
-      if (isProductAlreadyPresent) {
-        // alert("Product is already present in the cart.");
-        Swal.fire({
-          title: "Product is already present in the cart.",
-          confirmButtonColor: "black",
-          showClass: {
-            popup: "animate_animated animate_fadeInDown",
-          },
-          hideClass: {
-            popup: "animate_animated animate_fadeOutUp",
-          },
-        });
+      if (res) {
+        if (res.message == "Quantity increased in cart") {
+          // alert("Product is already present in the cart.");
+          Swal.fire({
+            title: "Quantity increased in cart.",
+            confirmButtonColor: "black",
+            showClass: {
+              popup: "animate_animated animate_fadeInDown",
+            },
+            hideClass: {
+              popup: "animate_animated animate_fadeOutUp",
+            },
+          });
+        } else {
+          // alert("Product added to cart successfully.");
+          Swal.fire({
+            title: "Product added to cart successfully.",
+            confirmButtonColor: "black",
+            showClass: {
+              popup: "animate_animated animate_fadeInDown",
+            },
+            hideClass: {
+              popup: "animate_animated animate_fadeOutUp",
+            },
+          });
+        }
       } else {
-        console.log(element);
-
-        lsArr.push(element);
-        localStorage.setItem("cartItems", JSON.stringify(lsArr));
-
-        // alert("Product added to cart successfully.");
         Swal.fire({
-          title: "Product added to cart successfully.",
+          title: "Something went wrong.",
           confirmButtonColor: "black",
           showClass: {
             popup: "animate_animated animate_fadeInDown",
