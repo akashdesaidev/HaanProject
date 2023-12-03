@@ -34,6 +34,8 @@ function getCookie(name) {
   return null;
 }
 
+window.getCookie = getCookie;
+
 const btn = document.createElement("div");
 btn.addEventListener("click", (e) => {
   e.preventDefault();

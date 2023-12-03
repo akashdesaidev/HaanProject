@@ -1,6 +1,6 @@
 const URL = `http://localhost:3000`;
 
-
+// console.log(getCookie())
 let filterText = document.getElementById("ans-filter");
 filterText.style.cursor = "pointer";
 filterText.addEventListener("click", function () {
@@ -398,16 +398,37 @@ const displayData = (data) => {
       }
     });
 
+    const addTOCart = async (data) => {
+      let token = JSON.parse(getCookie("token"));
+      const product = {
+        productId: element._id,
+        quantity: 1,
+      };
+
+      try {
+        const response = await fetch(`${URL}/addToCart`, {
+          method: "POST", // Specify the request method
+          headers: {
+            "Content-Type": "application/json",
+            authorization: token, // Set the content type to JSON
+          },
+          body: JSON.stringify(product), // Convert data to JSON string and include in the request body
+        });
+
+        const result = await response.json(); // Parse the JSON response
+
+        console.log(result);
+        return result;
+      } catch (error) {
+        console.error("Error during SignupPost:", error.message);
+        throw error; // Rethrow the error for the calling code to handle
+      }
+    };
+
     cardBtn.addEventListener("click", function () {
       let isProductAlreadyPresent = false;
-      if (lsArr.length > 0) {
-        lsArr.forEach((item) => {
-          if (item.id === element.id) {
-            isProductAlreadyPresent = true;
-            return;
-          }
-        });
-      }
+      addTOCart(element);
+
       if (isProductAlreadyPresent) {
         // alert("Product is already present in the cart.");
         Swal.fire({
@@ -421,8 +442,11 @@ const displayData = (data) => {
           },
         });
       } else {
+        console.log(element);
+
         lsArr.push(element);
         localStorage.setItem("cartItems", JSON.stringify(lsArr));
+
         // alert("Product added to cart successfully.");
         Swal.fire({
           title: "Product added to cart successfully.",
